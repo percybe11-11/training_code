@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>To-Do List</title>
+    <style>
+      .parent{
+        display: grid;
+        grid-template-columns: 100px 100px 100px;
+        word-wrap: break-word;}
+
+        .parent1{
+        display: grid;
+        grid-template-columns: 100px 100px 100px;
+        word-wrap: break-word;
+        gap: 10px;
+      }
+      
+      .delete{
+        height: 30px;
+        width: 55px;
+        margin-top: 10px;
+        background-color: red;
+        color: white;
+      }
+    
+    </style>
+</head>
+
+<body>
+  <p>To Do List</p>
+  <div class="parent1">
+  <input id='inputbox'placeholder="enter to do">
+  <input type="date" id="dater">
+  <button onclick="submit()">Submit</button>
+  </div>
+  
+  <div class="parent" id="display2"></div>
+ 
+  
+  <script src="JS folder/to-do-list.js">
+  </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+.pressedSub{
+  background-color: green;
+  color: white;
+  box-shadow: 0px 0px 5px 5px rgb(146, 219, 164);
+  border-radius: 10px;
+  border: none;
+}
+.unpressedSub{
+  background-color: red;
+  color: white;
+  border: none;
+}
+.header{
+  display:flex;
+  width:255px;
+  justify-content: space-between;
+  height: 20px;
+}
+.mainBox{
+  display: grid;
+  width:300px;
+  grid-template-rows: 1fr 2fr;
+  height: 100px;
+}
+.textBox{
+  display: flex;
+  width:300px;
+}
+.hiddenPara{
+  display:none;
+}

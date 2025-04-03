@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>3 buttons test</title>
+    <style>
+      .released{
+        background-color: red;
+        border-radius: 10px;
+        color: white;
+      }
+      .pressed{
+        background-color: greenyellow;
+        border-radius: 10px;
+        color: white;
+        box-shadow: 1px 1px 10px 10px rgb(237, 225, 225);
+      }
+    </style>
+</head>
+
+<body>
+  <button id="gameb" onclick="buttonpressed('game')">Game</button>
+  <button id="musicb" onclick="buttonpressed('music')">Music</button>
+  <button id="newsb" onclick="buttonpressed('news')">News</button>
+  
+  <script>
+ 
+    const gamebutton = document.getElementById('gameb');
+    const musicbutton = document.getElementById('musicb');
+    const newsbutton = document.getElementById('newsb');
+    let gameFlag = false;
+    let musicFlag = false;
+    let newsFlag = false;
+
+    function buttonpressed(event){
+      if (event==='game' && gameFlag === false){
+        gameFlag = !gameFlag;
+        gamebutton.classList.add('pressed');
+        gamebutton.classList.remove('released');
+
+      } else if (event==='music' && musicFlag === false){
+        musicFlag=!musicFlag;
+        musicbutton.classList.add('pressed');
+        musicbutton.classList.remove('released');
+      } else if (event==='news' && newsFlag === false){
+        newsFlag = !newsFlag;
+        newsbutton.classList.add('pressed');
+        newsbutton.classList.remove('released');
+      }
+      else if (event==='game' && gameFlag === true){
+        gameFlag=!gameFlag;
+        gamebutton.classList.remove('pressed');
+        gamebutton.classList.add('released');  
+        return gameFlag;
+    } else if (event==='music' && musicFlag === true){
+      musicFlag=!musicFlag;
+      musicbutton.classList.remove('pressed');
+      musicbutton.classList.add('released');
+    }  else if (event==='news' && newsFlag === true){
+      newsFlag=!newsFlag;
+      newsbutton.classList.remove('pressed');
+      newsbutton.classList.add('released');
+    }};
+  </script>
+</body>
+ 
+</html>

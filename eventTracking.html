@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Event Tracking</title>
+  </head>
+  <body style="height: 1000px;">
+    <button id="testerbutton">Tester</button>
+    <p id="hoverTimeDisplay">Hover Time: 0s</p>
+    <p id="hoverCountDisplay">Total Users Hovered: 0</p>
+
+
+
+
+    <script>
+      document.addEventListener('mousemove', function(event){
+        console.log(event.clientX, event.clientY);
+      });
+
+      window.addEventListener('scroll', function(){
+        let scrollPercentage=(window.scrollY/(document.body.scrollHeight - window.innerHeight))*100;
+        console.log(scrollPercentage +'% scrolled');
+      });
+
+      document.getElementById('testerbutton').addEventListener('mouseover', function(event){
+        console.log('hovered over element');
+      })
+
+      let button=document.getElementById('testerbutton');
+      let hoverTimeDisplay=document.getElementById('hoverTimeDisplay');
+      let hovertCountDisplay=document.getElementById('hovertimeCountDisplay');
+
+      let hoverStarttime=0;
+      let hoverCloseTime=0;
+      let hovercount=0;
+      let totalhovertime=0;
+
+      button.addEventListener('mouseover', function(event){
+        hoverStartTime = Date.now();
+        hovercount++;
+        hoverCountDisplay.innerText=`total hovers: ${hovercount}`;
+      });
+
+      button.addEventListener('mouseout', function(){
+        if (hoverStartTime>0){
+        hoverCloseTime=Date.now();
+        totalhovertime+=(hoverCloseTime-hoverStartTime)/1000;
+        hoverTimeDisplay.innerText=totalhovertime.toFixed(2);
+        }
+      })
+
+
+    </script>
+  </body>
+</html>
+
+/***Example: Storing User Hover Data in a Backend
+
+const express = require("express");
+const mongoose = require("mongoose");
+const app = express();
+
+app.use(express.json()); // Parse JSON data
+
+mongoose.connect("mongodb://localhost:27017/hoverData", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+const userSchema = new mongoose.Schema({
+  sessionID: String, // Unique session ID (could be a cookie)
+  totalHoverTime: Number,
+});
+
+const UserHover = mongoose.model("UserHover", userSchema);
+
+// Store hover time
+app.post("/hover", async (req, res) => {
+  const { sessionID, hoverTime } = req.body;
+
+  let user = await UserHover.findOne({ sessionID });
+
+  if (user) {
+    user.totalHoverTime += hoverTime;
+  } else {
+    user = new UserHover({ sessionID, totalHoverTime: hoverTime });
+  }
+
+  await user.save();
+  res.json({ message: "Hover time updated", totalHoverTime: user.totalHoverTime });
+});
+
+app.listen(3000, () => console.log("Server running on port 3000"));
+
+
+
+////////////////////////////////////
+
+Frontend (JavaScript - Sending Data to Server)
+
+function sendHoverData(hoverTime) {
+  const sessionID = localStorage.getItem("sessionID") || generateSessionID();
+
+  fetch("http://localhost:3000/hover", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ sessionID, hoverTime }),
+  })
+    .then((response) => response.json())
+    .then((data) => console.log("Server response:", data))
+    .catch((error) => console.error("Error:", error));
+}
+
+function generateSessionID() {
+  const id = "session_" + Math.random().toString(36).substr(2, 9);
+  localStorage.setItem("sessionID", id);
+  return id;
+}
+
+// Example: Send hover time when mouse leaves
+button.addEventListener("mouseout", function () {
+  let hoverCloseTime = Date.now();
+  let hoverTime = (hoverCloseTime - hoverStartTime) / 1000;
+  totalhovertime += hoverTime;
+  sendHoverData(hoverTime);
+});
+
+
+****//////////////////////////////////////////////
+

@@ -1,0 +1,22 @@
+let calculation="";
+
+function updateCalculation(value) {
+calculation+=value;
+console.log(calculation);
+}
+
+function clearCalculation() {
+calculation='';
+console.log("cleared:"calculation);
+}
+
+function evaluation(){
+try {
+  calculation=eval(calculation).toString();
+  console.log("Result:"calculation);
+} catch(error){
+  console.log("error");
+}
+
+}
+

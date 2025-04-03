@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rock Paper Scissor - Amazon Cart - with Display</title>
+  <style>
+    .amznSubmitButton{
+      background-color: red;
+      border-radius: 10px;
+      color: white;
+    }
+  .amznSubmitButtonActive{
+    background-color: green;
+    color: white;
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px 5px wheat;
+  }
+  
+  </style>
+</head>
+
+<body>
+  <p>Display</p>
+  <p id="display1"></p>
+  <p id="display"></p>
+  <button onclick="move('rock')">Rock</button>
+  <button onclick="move('paper')">Paper</button>
+  <button onclick="move('scissor')">Scissor</button>
+  <button onclick="clearScore()">Clear</button>
+
+  <p>Amazon Cost Calculator</p>
+  <input type="number" id="inputbox" placeholder="enter value only" onkeydown="keypress(event)">
+  <button onclick="calculate()" class="amznSubmitButton" id="amznButton">submit</button>
+  <p id="display2"></p>
+  <button onclick="cleared1()">Clear</button>
+ 
+  <br>
+
+  <input placeholder="enter text here" onkeyup="entertext(event)" id="input3">
+  <p id="keyup"></p>
+
+  <script>
+    let score=JSON.parse(localStorage.getItem('scoring'));
+
+    if (!score) {
+     score={
+      human:0,
+      computer:0,
+      draw:0
+    }
+    }
+
+    computerPick='';
+
+      function move(humanPick){
+        humanPick=humanPick;
+        compPick = Math.random();
+
+        if(compPick>=0 && compPick<=1/3){
+          computerPick='rock';
+        } else if (compPick>=1/3 && compPick<=2/3) {
+          computerPick='paper';
+        } else if (compPick>=2/3 && compPick<=1) {
+          computerPick ='scissor';
+        }
+        console.log('computer picks = '+computerPick);
+        if (computerPick===humanPick){
+          score.draw++;
+          console.log(`computer wins. Score: Human${score.human} Computer${score.computer} Draw${score.draw}`);
+        }
+        else if ((computerPick==='rock' && humanPick==='scissor') || (computerPick==='paper' && humanPick==='rock') || (computerPick==='scissor' && humanPick==='paper')) {
+          score.computer++;
+          console.log(`computer wins. Score: Human${score.human} Computer${score.computer} Draw${score.draw}`);
+        } else {
+          score.human++;
+          console.log(`human wins. Score: Human${score.human} Computer${score.computer} Draw${score.draw}`);
+        }
+        localStorage.setItem('scoring',JSON.stringify(score));
+        updateDisplay();
+      };
+     
+
+      function clearScore(){
+        score={
+        draw:0,
+        human:0,
+        computer:0
+        }
+        localStorage.setItem('scoring',JSON.stringify(score));
+        console.log(`Score cleared. Score: Human${score.human} Computer${score.computer} Draw${score.draw}`);
+        updateDisplay();
+      };
+
+      function updateDisplay(){
+        document.getElementById('display1').innerText = `computer pick: ${computerPick}`;
+        document.getElementById('display').innerText = `score - human:${score.human}, computer:${score.computer}, draw:${score.draw}`;
+      }
+
+      updateDisplay();
+
+      let valuePlaced = 0;
+      let flag1 = false;
+      
+      function calculate(){
+        valuePlaced = document.getElementById('inputbox').value;
+        valuePlaced = Number(valuePlaced);
+
+        if (typeof valuePlaced <= 0) {
+          return false; 
+        } else if (valuePlaced >= 40) {
+          valuePlaced = '$'+valuePlaced;
+          flag1 = true;
+          flag ();
+          updateDisplay2();
+          
+        } else if (valuePlaced <= 40 && valuePlaced <= 0){
+          return false;
+          updateDisplay2();
+
+        } else if (valuePlaced <= 40 && valuePlaced >=0){
+          valuePlaced = (valuePlaced+10).toFixed(2);
+          valuePlaced = '$'+valuePlaced;
+          flag1 = true;
+          flag ();
+          updateDisplay2();
+        }};
+
+        function updateDisplay2(){
+          document.getElementById('display2').innerText = valuePlaced;
+        }
+
+        function flag(){
+          if (flag1){
+          document.getElementById('amznButton').classList.add('amznSubmitButtonActive');
+          } else if (!flag1){
+            document.getElementById('amznButton').classList.remove('amznSubmitButtonActive');
+            document.getElementById('amznButton').classList.add('amznSubmitButton');
+          }
+        };
+        
+        function cleared1(){
+          flag1 = false;
+          valuePlaced="";
+          document.getElementById('inputbox').value="";
+          /*document.getElementById('display2').innerText="";*/
+          flag();
+          updateDisplay2();
+        };
+
+        function keypress(event){
+          if (event.key === 'Enter'){
+            calculate();
+          }
+          updateDisplay2();
+        }
+
+        function entertext(event){
+          document.getElementById('keyup').textContent = document.getElementById('input3').value;
+
+        };
+
+
+  </script>
+  
+
+
+</body>
+</html>
+
+

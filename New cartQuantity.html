@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cart Quantity</title>
+  </head>
+
+    <body>
+      <p>Cart Quantity</p>
+
+      <br>
+
+      <button onclick="console.log(`Cart Quantity: ${carQuantity}`);">
+        Show Quantity
+      </button>
+
+      <button onclick="addToCart(1);">
+        Add to Cart
+      </button>
+
+      <button onclick="addToCart(2);">
+        +2
+      </button>
+
+      <button onclick="addToCart(3);">
+        +3
+      </button>
+
+      <button onclick="resetCart(0);">
+        Reset Cart
+      </button>
+
+      <button onclick="removeItems(2);">
+        Remove 2
+      </button>
+
+      <button onclick="removeItems(3);">
+        Remove 3
+      </button>
+
+<script>
+  let carQuantity = 0;
+  function addToCart(value)
+  {
+    carQuantity = carQuantity + value;
+    
+    if (carQuantity <= 10){
+      console.log(`cartQuantity: ${carQuantity}`);
+    } else if (carQuantity > 10) {
+      carQuantity = 10;
+      console.log(`cartQuantity: ${carQuantity}`);
+  }
+}
+
+  function resetCart(value) 
+  {
+    carQuantity = 0;
+    console.log('cart has been reset');
+  }
+
+  function removeItems(value)
+  {
+    carQuantity = carQuantity-value;
+
+    if (carQuantity < 0) {
+      carQuantity = 0;
+      console.log(`no items in cart, current cart items: ${carQuantity}`);
+    }
+  }
+
+
+</script>
+    </body>
+</html>

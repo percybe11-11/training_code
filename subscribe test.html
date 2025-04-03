@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Subscribe</title>
+    <style>
+        .subButton{
+      background-color: red;
+      border-radius: 10px;
+      color: white;
+    }
+  .subButtonActive{
+    background-color: green;
+    color: white;
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px 5px wheat;
+  }
+    </style>
+  </head>
+  <body>
+    <button onclick="subbed()" id="sub" class="subButton">Subscribe</button>
+
+    <script>
+      let status = JSON.parse(localStorage.getItem('statusB')) || false;
+
+      let button = document.getElementById('sub');
+
+      button.innerText = status ? 'Subscribed':'Subscribe';
+
+      function subbing(){
+      if (status) {
+          button.classList.add('subButtonActive');
+          button.classList.remove('subButton');
+        } else {
+          button.classList.remove('subButtonActive');
+          button.classList.add('subButton');
+        }
+      }
+
+      function subbed(){
+        status=!status;
+        button = document.getElementById('sub');
+        button.innerText = status ? 'Subscribed':'Subscribe';
+        localStorage.setItem('statusB',JSON.stringify(status));
+        subbing();
+};
+
+
+    </script>
+
+  </body>
+</html>

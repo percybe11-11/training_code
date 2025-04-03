@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Calculator</title>
+
+    <body>
+      <p>Calculator</p>
+      <p id="display"></p>
+<p>
+  <button onclick="
+  updateCalculation('1'); 
+    ">
+    1
+  </button>
+  <button onclick="
+  updateCalculation('2');
+  ">
+    2
+  </button>
+  <button onclick="
+  updateCalculation('3');
+  ">
+    3
+  </button>
+  <button onclick="
+  updateCalculation('+');
+  ">
+    +
+  </button>
+</p>
+ 
+  <p>
+    <button onclick="
+    updateCalculation('4');
+    ">
+      4
+    </button>
+    <button onclick="
+    updateCalculation('5');
+    ">
+      5
+    </button>
+    <button onclick="
+    updateCalculation('6');
+    ">
+      6
+    </button>
+    <button onclick="
+    updateCalculation('-');
+    ">
+      -
+    </button>
+  </p>
+    <p>
+      <button onclick="
+      updateCalculation('7');
+      ">
+        7
+      </button>
+      <button onclick="
+      updateCalculation('8');
+      ">
+        8
+      </button>
+      <button onclick="
+      updateCalculation('9');
+      ">
+        9
+      </button>
+      <button onclick="
+      updateCalculation('*');
+      ">
+        *
+      </button>
+    </p>
+      <p>
+        <button onclick="
+        updateCalculation('0');
+        ">
+          0
+        </button>
+        <button onclick="
+        updateCalculation('.');
+        ">
+          .
+        </button>
+        <button onclick="
+        evaluation();
+        ">
+          =
+        </button>
+        <button onclick="
+        updateCalculation('/');
+        ">
+          /
+        </button>
+      </p>
+        <button onclick="
+        clearCalculation();
+        ">
+          Clear
+        </button>
+        <button onclick="backspace()">(<-)</button>
+
+<script>
+  let calString=JSON.parse(localStorage.getItem('total')) || '';
+  
+
+  function updateCalculation(value){
+    calString+=value;
+    console.log(calString);
+    localStorage.setItem('total',JSON.stringify(calString));
+    updateDisplay();
+  }
+
+  function evaluation(){
+    calString=eval(calString).toString();
+    console.log(calString);
+    localStorage.setItem('total',JSON.stringify(calString));
+    updateDisplay();
+  }
+
+  function backspace(){
+    calString=calString.slice(0,-1);
+    console.log(calString);
+    localStorage.setItem('total',JSON.stringify(calString));
+    updateDisplay();
+  }
+
+  function clear(){
+    calString="";
+    console.log(calString);
+    updateDisplay();
+    localStorage.setItem('total',JSON.stringify(calString));
+  }
+
+  function updateDisplay(){
+    document.getElementById('display').innerText = calString;
+  }
+  
+  updateDisplay();
+</script>
+
+  </body>
+  </html>

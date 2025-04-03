@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DOM Manipulation</title>
+
+    <style> 
+      .parahider{
+        display: none;
+      }
+
+      #hiddendiv{
+        position: absolute;
+      }
+
+    </style>
+
+    
+</head>
+
+<body>
+  <button id="headb" onclick="changePara('head')">Head</button>
+  <div class="parahider"><p id="headp">when head is shown this paragraph shows</p></div>
+  <button id="tailb"  onclick="changePara('tail')">Tail</button>
+  <div class="parahider"><p id="tailp">when tail is shown this paragraph shows</p></div>
+  <p id="display" style="display: none;"></p>
+
+  <button onclick="inputfield()">Click to enter name</button>
+
+  <div id="hiddendiv" class="parahider"><input placeholder="enter name" id="inputbox" onkeydown="enterkey(event)">
+  <button onclick="submitInput()" id="enterid">Enter</button></div>
+
+  
+  <script>
+
+let displayElement = document.getElementById('display');
+let inputDiv = document.getElementById('hiddendiv');
+let inputFlag = false;
+let inputBox = document.getElementById('inputbox');
+
+    function changePara(value){
+      inputFlag = false;
+      inputDiv.style.display = 'none';
+      displayElement.innerText = value === 'head' ? document.getElementById('headp').innerText:document.getElementById('tailp').innerText;
+      displayElement.style.display='block';
+      document.activeElement.blur();
+    }
+
+    function inputfield(){
+      inputFlag = true;
+      displayElement.style.display='none';
+      displayElement.innerText='';
+      inputDiv.style.display='block';
+      inputBox.focus();
+
+    }
+
+    function submitInput(){
+      if (inputFlag){
+      inputDiv.style.display="none";
+      displayElement.innerText=document.getElementById('inputbox').value;
+      displayElement.style.display='block';
+      document.activeElement.blur();
+    }}
+
+    function enterkey(event){
+      if (event.key==='Enter'){
+        submitInput();
+      }
+    }
+
+    window.addEventListener('keydown', function(event){
+  if (event.key === 'Enter' && !inputFlag) {
+    inputfield();
+  }
+});
+  
+  </script>
+</body>
+ 
+</html>

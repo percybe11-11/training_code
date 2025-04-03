@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DOM-project</title>
+  </head>
+
+    <body>
+      <button onclick="subscribe()" id="subscribe">Subscribe</button>
+
+<script>
+  let isSubscribe = JSON.parse(localStorage.getItem('subscribing')) || false;
+
+  function update(){
+    let button = document.getElementById('subscribe');
+    button.innerText = isSubscribe ? 'subscribed':'subscribe';
+  }
+
+  function subscribe(){
+   isSubscribe=!isSubscribe;
+   localStorage.setItem('subscribing', JSON.stringify(isSubscribe));
+   update();
+  }
+
+  update();
+</script>
+    </body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Update Rock Paper Scissor Beau</title>
+    <link rel="stylesheet" href="css/rock-paper-scissor.css">
+  </head>
+
+    <body class="body">
+  <div class="playArea">
+    <div class="Box1">
+      <h1>Rock Paper Scissor</h1>
+    </div>
+        <div class="largeIcons">   
+        <div class="iconHolder">
+          <button id="rockButton" onclick="play('Rock')">
+           <img class="rock" src="images/rock.webp">
+          </button>  
+        </div>
+          <div class="iconHolder">
+          <button id="paperButton" onclick="play('Paper')">
+            <img class="paper" src="images/paper.webp">
+          </button>
+          </div>
+          <div class="iconHolder">
+          <button id="scissorButton" onclick="play('Scissor')">
+            <img class="scissor" src="images/scissor.webp">
+          </button>
+          </div>
+        </div> 
+              <div class="resultbox">
+                <div class="resultboxstyle"> 
+                <P id ="display0"></P> 
+                <p>Computer Pick</p>
+                </div>
+                <div class="resultboxstyle"> 
+                <p id="display1"></p>
+                </div>
+                <div class="resultboxstyle"> 
+                <p id="display4"></p>
+                <p>You Pick</p>
+                </div>
+              </div>
+          <div>
+          <p id="display3"></p>
+          </div>
+          <div>
+          <button onclick="reset();">Reset</button>
+          <button class="autoP" onclick="autoplay()">Autoplay</button>
+          </div>
+    
+  </div>
+<script src="JS folder/Rock-paper-scissor-beautified.js"></script>
+</body>
+</html>

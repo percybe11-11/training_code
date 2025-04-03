@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Excersise 6d</title>
+</head>
+
+<body>
+  
+  <script>
+  const age = 45;
+  let fDay = 'Monday';
+  const isHoliday='Saturday,Sunday';
+  let day = isHoliday.split(',');
+  let day1 = day[0];
+  let day2 = day[1];
+  
+  if ((fDay !== day1 && fDay !== day2) && (age <= 18 || age >= 65)) {
+    console.log('you get discount');} 
+    else {
+      console.log('you get no discount');
+    }
+
+    
+  </script>
+</body>
+ 
+</html>

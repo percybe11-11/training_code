@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Three buttons improved and sub-button</title>
+    <style>
+      .released{
+        background-color: red;
+        border-radius: 10px;
+        color: white;
+      }
+      .pressed{
+        background-color: greenyellow;
+        border-radius: 10px;
+        color: white;
+        box-shadow: 1px 1px 10px 10px rgb(237, 225, 225);
+      }
+    </style>
+</head>
+
+<body>
+  <button id="subber" onclick="subbed()">Subscribe</button>
+  <button id="musicb" onclick="pressed('music')">Music</button>
+  <button id="newsb" onclick="pressed('news')">News</button>
+  <button id="gamesb" onclick="pressed('game')">Games</button>
+  
+  <script>
+    let flagStore=JSON.parse(localStorage.getItem('flagStore')) || {
+      game: false,
+      news: false,
+      music: false
+    }
+    
+    let subFlag = JSON.parse(localStorage.getItem('stored')) || false;
+
+    let subbing = document.getElementById('subber');
+
+    if (subFlag===true){
+        subbing.classList.add('pressed');
+        subbing.classList.remove('released');
+    } else if (!subFlag){
+        subbing.classList.remove('pressed');
+        subbing.classList.add('released');
+    }
+
+  subbing.innerText = subFlag ? 'Subscribed':'Subscribe';
+    
+    function subbed(){
+      subFlag=!subFlag;
+      if (subFlag===true){
+        subbing.classList.add('pressed');
+        subbing.classList.remove('released');
+        subbing.innerText='Subscribed';
+      } else if (subFlag===false){
+        subbing.classList.remove('pressed');
+        subbing.classList.add('released');
+        subbing.innerText='Subscribe';
+      }
+      localStorage.setItem('stored',JSON.stringify(subFlag));
+
+    }
+
+    const buttons={
+      game: document.getElementById('gamesb'),
+      music: document.getElementById('musicb'),
+      news: document.getElementById('newsb')
+    }
+  
+
+    function pressed(event){
+      flagStore[event] = !flagStore[event];
+      buttons[event].classList.toggle('pressed', flagStore[event]);
+      buttons[event].classList.toggle('released', !flagStore[event]);
+      
+      localStorage.setItem('flagStore',JSON.stringify(flagStore));
+    }
+    
+    window.onload = function (){
+      Object.keys(flagStore).forEach((event) => {
+        buttons[event].classList.toggle('pressed', flagStore[event]);
+        buttons[event].classList.toggle('released', !flagStore[event]);
+      })
+    }
+    
+   
+  </script>
+</body>
+ 
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Coin Flip Game</title>
+</head>
+
+<body>
+  <button onclick="flip('heads')">heads</button>
+  <button onclick="flip('tails')">tails</button>
+  <button onclick="reset()">reset</button>
+  
+  <script>
+
+    let score = JSON.parse(localStorage.getItem('gameScore'));
+
+    if (!score) {
+      score = {
+        human: 0,
+        machine: 0
+      }
+    };
+    
+    function flip(value) {
+
+      const machineFlip = Math.random();
+
+    if (machineFlip >= 0 && machineFlip <= 0.5) {
+      machineChoice ='heads';
+    } else {
+      machineChoice = 'tails';
+    }
+    console.log(`machine choice guesses ${machineChoice}`);
+    
+    if (machineChoice === value) {
+      score.machine++;
+      console.log(`machine wins, human: ${score.human} machine: ${score.machine}`); 
+    } else {
+      score.human++
+      console.log(`human wins, human: ${score.human} machine: ${score.machine}`);  
+    }
+    localStorage.setItem('gameScore',JSON.stringify(score));
+    return score;
+  };
+  
+
+  function reset(){
+    score={
+    human:0,
+    machine:0
+    }
+    localStorage.setItem('gameScore',JSON.stringify(score));
+  };
+
+</script>
+</body>
+ 
+</html>

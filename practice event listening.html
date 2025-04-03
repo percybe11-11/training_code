@@ -1,0 +1,55 @@
+/*tracking mouse movement*/
+
+<button id="testbutton">Tester</button>
+<p id="display"></p>
+<p id="display1"></p>
+<p id="display2"></p>
+
+
+
+
+
+<script>
+  document.addEventListener('mousemove', function(event){
+    console.log(event.clientX,event.clientY);
+  })
+
+  window.addEventListener('scroll', function(){
+    let scrollpercent=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100;
+    console.log('scroll:',scrollpercent);
+
+  })
+
+  document.getElementById('testbutton').addEventListener('mouseover', function(event){
+    console.log('hovered over')
+  })
+
+  let button=document.getElementById('testbutton');
+  let hovertimeDisplay=document.getElementById('display');
+  let hovercountDisplay=document.getElementById('display1');
+  let totalovertime=document.getElementById('display2');
+
+  let starthoverTime=0;
+  let endhoverTime=0;
+  let hoverCount=0;
+  let hoverTime=0;
+
+  button.addEventListener('mouseover',function(event){
+    starthoverTime=Date.now();
+    hoverCount++;
+    hovercountDisplay.innerText=hoverCount;
+  })
+
+  
+
+button.addEventListener('mouseout', function(event){
+    endhoverTime=Date.now();
+    hoverTime += (endhoverTime-starthoverTime)/1000;
+    hovercountDisplay.innerText=hoverTime.toFixed(2);
+  })
+  
+
+
+
+
+</script>

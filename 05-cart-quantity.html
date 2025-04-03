@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cart Quantity</title>
+
+    <body>
+      <p>Cart Quantity</p>
+
+      <br>
+
+      <button onclick="console.log(`Cart Quantity: ${carQuantity}`);">
+        Show Quantity
+      </button>
+
+      <button onclick="
+      carQuantity++; 
+      console.log(carQuantity);
+      ">
+        Add to Cart
+      </button>
+
+      <button onclick="
+      carQuantity += 2; 
+      console.log(carQuantity)
+      ">
+        +2
+      </button>
+
+      <button onclick="
+      carQuantity += 3;
+      console.log(carQuantity)
+      ">
+        +3
+      </button>
+
+      <button onclick="
+      carQuantity = carQuantity*0;
+      console.log(`cart was reset: ${carQuantity}`);
+      ">
+        Reset Cart
+      </button>
+
+<script>
+  let carQuantity = 0;
+
+
+</script>
+    </body>
+  </head>
+</html>

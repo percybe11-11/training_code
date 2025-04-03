@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Update Rock Paper Scissor</title>
+    <style>
+      .body{
+        padding: 10px;
+      }
+
+      .playArea{
+        width: 500px;
+        display: grid;
+        color:black;
+        background-color: purple;
+        grid-template-rows: 1fr 3fr 2fr 1fr 1fr;
+        padding: 10px;
+        height: 820px;
+      }
+    
+      .Box1{
+        background-color: yellowgreen;
+        padding: 10px;
+      }
+      .largeIcons{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2px;
+        background-color: aqua;
+        align-items: center;
+        
+      }
+
+      .rock, .paper, .scissor {
+        width:80px;
+
+      }
+      .iconHolder{
+        display: flex;
+        justify-content: center;
+      }
+      .resultbox{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        align-items: center;
+      }
+      .resultboxstyle{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+    </style>
+  </head>
+
+    <body class="body">
+  <div class="playArea">
+    <div class="Box1">
+      <h1>Rock Paper Scissor</h1>
+    </div>
+        <div class="largeIcons">   
+        <div class="iconHolder">
+          <button onclick="humanPick('Rock');">
+           <img class="rock" src="images/rock.webp">
+          </button>  
+        </div>
+          <div class="iconHolder">
+          <button onclick="humanPick('Paper')">
+            <img class="paper" src="images/paper.webp">
+          </button>
+          </div>
+          <div class="iconHolder">
+          <button onclick="humanPick('Scissor')">
+            <img class="scissor" src="images/scissor.webp">
+          </button>
+          </div>
+        </div> 
+              <div class="resultbox">
+                <div class="resultboxstyle"> 
+                <P id ="display0"></P> 
+                <p>Computer Pick</p>
+                </div>
+                <div class="resultboxstyle"> 
+                <p id="display1"></p>
+                </div>
+                <div class="resultboxstyle"> 
+                <p id="display4"></p>
+                <p>You Pick</p>
+                </div>
+              </div>
+          <div>
+          <p id="display3"></p>
+          </div>
+          <div>
+          <button onclick="reset();">Reset</button>
+          <button onclick="autoplay()">Autoplay</button>
+          </div>
+    
+  </div>
+ 
+<script>
+   let isAutoPlay=true;
+   let intervalId;
+  function autoplay(){
+    if(!isAutoPlay){
+  intervalId = setInterval(()=>{
+    let value=Math.random();
+    if (value>=0 && value< 1/3){
+      value='Rock';
+    } else if(value>=1/3&&value<2/3){
+      value='Paper';
+    } else if(value>=2/3&&value<1){
+      value = 'Scissor';
+    }
+    humanPick(value);
+
+  },1000);
+  isAutoPlay=true;
+
+  } else {
+    clearInterval(intervalId);
+    isAutoPlay=false;
+  }
+}
+   
+  let score = JSON.parse(localStorage.getItem('gameScore'));
+
+  if (score === null){
+    score = {
+    computer:0,
+    human:0,
+    draw:0
+    }
+  };
+
+  let computerPick='';
+  let flag ='';
+
+  function humanPick(value) {
+    const randomNumber = Math.random();
+   if (randomNumber >= 0 && randomNumber <= 1/3) {
+      computerPick = 'Rock';
+      document.getElementById('display0').innerHTML = '<img src="images/rock.webp" class="rock">';
+    } else if (randomNumber >= 1/3 && randomNumber <= 2/3) {
+      computerPick = 'Paper';
+      document.getElementById('display0').innerHTML = '<img src="images/paper.webp" class="paper">';
+    } else if (randomNumber >= 2/3 && randomNumber <=1) {
+      computerPick = 'Scissor';
+      document.getElementById('display0').innerHTML = '<img src="images/scissor.webp" class="scissor">';
+    }
+    console.log('computer pick:'+computerPick);
+
+    if (value === 'Rock'){
+    document.getElementById('display4').innerHTML = '<img src="images/rock.webp" class="rock">';
+    } else if(value === 'Paper'){
+      document.getElementById('display4').innerHTML = '<img src="images/paper.webp" class="paper">';
+    } else if(value === 'Scissor'){
+      document.getElementById('display4').innerHTML = '<img src="images/scissor.webp" class="scissor">';
+    }
+   
+    if (computerPick === value){
+     score.draw++;
+     flag = 'draw';
+    UpdateDisplay();
+    }
+    else if ((computerPick === 'Rock' && value === 'Scissor')|| (computerPick === 'Paper' && value === 'Rock') || (computerPick === 'Scissor' && value === 'Paper')) {
+      score.computer++;
+      flag = 'computerWin';
+      UpdateDisplay();
+      console.log(`computer wins, score - draw:${score.draw}, human:${score.human}, computer:${score.computer}`);
+      
+    } else {
+      score.human++;
+      flag = 'humanWin';
+      UpdateDisplay();
+      console.log(`human wins, score:score - draw: ${score.draw}, human:${score.human}, computer:${score.computer}`); 
+    }
+    localStorage.setItem('gameScore',JSON.stringify(score));
+    return score;
+  };
+
+  function UpdateDisplay(){
+    if (flag ==='draw'){
+    document.getElementById('display3').innerText = `Score: draw: ${score.draw}, human:${score.human}, computer:${score.computer}`;
+    document.getElementById('display1').innerText = 'Draw';
+    } else if (flag ==='computerWin'){
+      document.getElementById('display3').innerText = `Score: draw: ${score.draw}, human:${score.human}, computer:${score.computer}`;
+      document.getElementById('display1').innerText = 'Computer Wins';
+    } else if (flag ==='humanWin'){
+      document.getElementById('display3').innerText = `Score: draw: ${score.draw}, human:${score.human}, computer:${score.computer}`;
+      document.getElementById('display1').innerText = 'Human Wins';
+    } else if (flag ===''){
+      document.getElementById('display3').innerText = `Score: draw: ${score.draw}, human:${score.human}, computer:${score.computer}`;
+      document.getElementById('display1').innerText = 'Reset';
+      document.getElementById('display4').innerText = '';
+      document.getElementById('display0').innerHTML = '';
+    }
+  };
+
+  
+
+  function reset(){
+    
+    flag = '';
+    score={
+    computer:0,
+    human:0,
+    draw:0
+    }
+    console.log(`score reset: draw: ${score.draw}, human: ${score.human}, computer: ${score.computer}`);
+    localStorage.removeItem('gameScore');
+    UpdateDisplay();
+    return score;
+    };
+  
+
+</script>
+</body>
+</html>

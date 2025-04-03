@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>timepass</title>
+  </head>
+
+    <body>
+    
+
+     
+
+<script>
+ 
+function kmAndMiles(length,fromUnit,toUnit=1600) {
+if (fromUnit==='km') {
+length = length*1000/toUnit;
+console.log('total mile:'+length);
+
+} else if (fromUnit==='miles') {
+length = length*toUnit/1000;
+console.log('total km:'+length);
+}
+return length;
+}
+
+
+kmAndMiles(50,'miles');
+
+
+
+
+
+
+
+
+
+ /**function celsToFar(number,unit){
+    number = (number*9/5)+32;
+    unit = 'F';
+    string = number+unit;
+  }
+
+  console.log(celsToFar(25,'c'));**/
+
+
+/**function tp(value) {
+  if (!value) {
+   value = 'Hi there'; 
+  } 
+  return value;
+  }
+console.log(tp());
+console.log(tp('hello'));**/
+
+</script>
+    </body>
+</html>

@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Playing With Arrays</title>
+</head>
+
+<body>
+  
+  <script>
+
+/*let multiply=(a,b)=>a*b;
+console.log(multiply(2,3));
+
+console.log(((a,b)=>a*b)(2,3));
+
+
+let array=[2,5,6,3,7,7,1,4,,56,8];
+let posCount=0;
+
+array.forEach((value)=>{
+  if (value%2===0){
+    return posCount++;
+  }
+});
+
+console.log(posCount);*/
+
+/*let array=[1,2,3];
+
+console.log(array.map(value => value*2));*/
+
+/*let array=['eggs', 'mutton', 'bread', 'chicken', 'eggs', 'alcohol', 'eggs']
+let eggs=0;
+
+console.log(array.filter((value, index)=>{
+  if (value==='eggs' && eggs<2){
+ eggs+=1;
+ return false;
+  } else {
+    return true;
+  }
+}));*/
+
+
+
+
+
+
+
+
+
+
+
+
+/*let array=[1,4,67,84,45,98,34,56,56];
+
+    console.log(array.filter((value,index)=>{
+      if(value%2===0){
+        return true;
+      }else{
+        return false;
+      }
+    }));*/
+   
+
+  /*temp = takeArray[0];
+  temp2= takeArray[takeArray.length-1];
+  takeArray[takeArray.length-1]=temp;
+  takeArray[0]=temp2;
+  console.log(takeArray);
+
+[takeArray[0], takeArray[takeArray.length-1]]=[takeArray[takeArray.length-1], takeArray[0]];
+console.log(takeArray);*/
+
+/*for(let i=0;i<takeArray.length;i+=2){
+count=takeArray.length;
+}
+console.log(count);*/
+
+/*for (let i=0; i<5; i++){
+  console.log(i);
+} */
+
+/*for(i=5; i>0; i--){
+  console.log(i);
+}*/
+
+/*let i = 0;
+while(i<10){
+  i++;
+  console.log(i);
+}*/
+
+/*let i =5;
+while(i>0){
+  i--;
+  console.log(i);
+}*/
+/*const takeArray =[10,20,30,40, 50, 60, 70, 80];
+let countArray= [];
+let count=0;
+
+addOne(takeArray);
+
+function addOne(takeArray){
+for (let i = 0; i<takeArray.length; i++){
+  count=takeArray[i]+1;
+  countArray.push(count);
+}
+}
+console.log(countArray);*/
+
+/*const takeArray =[10,20,30,40, 50, 60, 70, 80];
+const newAr=[];
+let tot=0;
+let num=2;
+
+addNum(takeArray,num);
+
+function addNum(takeArray,num){
+for(i=0;i<takeArray.length;i++){
+  tot=takeArray[i]+num;
+  newAr.push(tot);
+}
+};
+console.log(newAr);*/
+
+/*const array=[-1,-2,-10,5,-7,4,2,8,-8,8,9,-7];
+let totNeg=0;
+let totPos=0;
+let totPosCount=0;
+const posAr=[];
+for(i=0; i<array.length;i++){
+  if(array[i]<0){
+    totNeg++;
+  } else if(array[i]>0) {
+    totPos=array[i];
+    posAr.push(totPos);
+    totPosCount++;
+  }
+}  
+console.log(`posAr=${posAr} & totNeg=${totNeg} & totPosCount=${totPosCount}`);*/
+
+/*const array=[-1,-2,-10,5,-7,4,2,8,-8,8,9,-7];
+let holder=[];
+let maxValue=0;
+const checker=0;
+let minValue=0;
+
+minMax(array);
+
+function minMax(array){
+for (let i=0;i<array.length;i++){
+    if(array[i]>=checker && array[i]>=maxValue){
+      maxValue=array[i];
+      holder.push(maxValue);
+    } else if (array[i]<checker && array[i]<minValue){
+      minValue=array[i];
+    }    
+    }
+    }
+    console.log(maxValue);
+    console.log(minValue);
+    console.log(holder);*/
+
+    /*const string=['apple','cat','dog','apple','cat','dog','monkey','ban','cat'];
+    let counter={};
+    
+    for(let i=0;i<string.length;i++){
+      let str=string[i];
+      if (counter[str]===undefined){
+      counter[str]+1;
+      }else {
+        counter[str]+=1;
+      }
+      console.log(counter);
+    };*/
+
+    /*Using foreach*/
+
+    /*const string=['apple','cat','dog','apple','cat','dog','monkey','ban','cat'];
+    let counter={};*/
+    
+   /* const string=['apple','cat','dog','apple','cat','dog','monkey','ban','cat'];
+    let counter={};
+    string.forEach(str=>{
+      counter[str] = (counter[str]||0)+1;
+    });
+    console.log(counter);/*
+
+    /*using map
+
+    const string = ['apple','cat','dog','apple','cat','dog','monkey','ban','cat'];
+    const countMap = new Map();
+
+    for(let i=0;i<string.length;i++){
+      let str=string[i];
+      if (!countMap.has(str)){
+        countMap.set(str,1);
+      } else {
+        countMap.set(str, countMap.get(str)+1);
+      }
+    }; 
+console.log(Object.fromEntries(countMap));*/
+
+/*const string = ['apple','cat','dog','apple','cat','dog','monkey','ban','cat'];
+const countMap = new Map();
+
+string.forEach(str=>{
+  countMap.set(str,(countMap.get(str)||0)+1);
+});
+
+console.log(Object.fromEntries(countMap));*/
+
+/*const string = ['apple','cat','dog','apple','cat','dog','monkey','ban','cat'];
+let counter={};
+
+for(i=0;i<string.length;i++){
+  let str=string[i];
+  if (counter[str]===undefined){
+    counter[str]=1;
+  } else {
+    counter[str]+=1;
+  }
+}
+console.log(counter);*/
+
+/*Using do while to bubble swap sort an array
+const array=[1,2,5,3,2,6,8,6,3,54,9,1,34,565,758,787,21,33,4,6,5,2,3424,234,53,685,5];
+let swapped;
+do {
+  swapped=false;
+  for(let i=0;i<array.length;i++)
+  if(array[i] > array[i+1]){
+  [array[i], array[i+1]]=[array[i+1], array[i]];
+  swapped=true;
+}
+}
+  while (swapped);
+ console.log(array);
+*/
+
+/*const array=[1,2,5,3,2,6,8,6,3,54,9,1,34,565,758,787,21,33,4,6,5,2,3424,234,53,685,5, 45,45,565,68,3,6,34,567,35,65,7,843,57,575,74,7,547];
+let holder=[];
+let empty=0;
+let flag;
+
+do {
+flag=false;
+for (let i=0; i<array.length;i++){
+if (array[i]>array[i+1]){
+[array[i], array[i+1]]=[array[i+1], array[i]];
+flag = true;
+}
+}
+}while (flag);*/
+
+/*const arrays= ['apple','cat','dog','apple','cat','dog','monkey','ban','cat'];
+
+let arrayHolder={};
+
+arrays.forEach(str=>{
+  arrayHolder[str] = (arrayHolder[str]||0)+1;
+  
+});*/
+/*const arrays= ['apple','cat','dog','apple','cat','dog','monkey','ban','cat'];
+
+let newMap = new map();
+
+for (let i=0;i<arrays.length;i++){
+  if (!newMap.has(str)){
+    newMap.set(str, 1)
+  } else {
+    newMap.set(str,newMap.get(str)+1);
+  }
+}*/
+/*const arrays= ['apple','cat','dog','apple','cat','dog','monkey','ban','cat'];
+let obj={};
+let mapper = new Map();
+
+arrays.forEach(str=>{
+  mapper.set(str,(mapper.get(str)||0)+1)
+})
+
+console.log(Object.fromEntries(mapper));*/
+
+/*const arrays= ['apple','cat','dog','apple','search','cat','dog','monkey','ban','search','cat','search'];
+
+for(let i=0; i<arrays.length;i++){
+  if (arrays[i]==='search'){
+    console.log(`'search' found at index: ${i}`);
+    console.log(arrays.indexOf('search'));
+  }
+}*/
+
+/*function sorter(array,word){
+  for (let i=0;i<array.length;i++){
+  if (array[i]===word){
+    console.log(i);
+  }}
+  
+};
+
+sorter(['monkey', 'donkey', 'chunky'],'chunky');*/
+
+/*let newFood=[];
+let caught=0;
+
+function removeEgg(foods){
+  for (let i=0; i<foods.length;i++)
+  if (foods[i]==='egg' && caught<2){
+    foods[i]=caught;
+      caught++
+      continue;
+    
+  } else if (foods[i]==='egg' && caught>2){
+    add=foods[i];
+    newFood.push(add);
+  }
+  else {
+    add=foods[i];
+    newFood.push(add);
+  }
+}
+removeEgg(['bun','toast', 'egg', 'rice', 'egg','toast', 'egg', 'rice', 'egg']);
+console.log(newFood);
+*/
+
+
+/**for (i=i;i<20;i++){
+  if(i%3===0 && i%5===0){
+    console.log('fizzBuzz');
+  } else if (i%3===0){
+    console.log('fiz');
+  } else if (i%5===0){
+    console.log('buzz');
+  }
+}*/
+
+/*let array = ['apple','cat','dog','apple','search','cat','dog','monkey','ban','search','cat','search'];
+let emptyarray=[];
+let seen={};
+
+
+for(let i=0; i<array.length; i++){
+
+  for(let j=0; j<array.length; j++){
+    if (i!==j && array[i]===array[j] && !seen[array[i]]){
+      emptyarray.push(array[i]);
+      seen[array[i]]=true;
+  }}*/
+
+
+
+/*let array = ['apple','cat','dog','apple','search','cat','dog','monkey','ban','search','cat','search'];
+let unique=[];
+let duplicate=[];
+let seen={};
+
+for (let i=0;i<array.length;i++){
+  seen[array[i]]=(seen[array[i]] || 0) + 1;
+}
+  for(let key in seen){
+    if (seen[key]>1){
+    duplicate.push[key];
+  } else {
+    unique.push(key);
+  }}
+  console.log(unique);*/
+
+  /*let array = ['apple','cat','dog','apple','search','cat','dog','monkey','ban','search','cat','search'];
+let unique=[];
+let seen={};
+
+for(let i=0;i<array.length;i++){
+  if(!seen[array[i]]){
+    unique.push(array[i]);
+    seen[array[i]]=true;
+  }
+}console.log(unique);*/
+
+
+/*
+{
+  let array[i] = str;
+  if (empty[str]!== emptyarray[i]){
+    empty[str]=pusher;
+    emptyarray.push(pusher);
+    
+  } else {
+    let pusher = array[i];
+    empty.push(pusher);
+  }
+  console.log(empty);
+}
+*/
+
+
+
+
+  </script>
+</body>
+ 
+</html>

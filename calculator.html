@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Calculator</title>
+
+    <body>
+      <p>Calculator</p>
+      <p id="display"></p>
+<p>
+  <button onclick="
+  updateCalculation('1');
+  console.log(calculation);  
+    ">
+    1
+  </button>
+  <button onclick="
+  updateCalculation('2');
+  console.log(calculation);
+  ">
+    2
+  </button>
+  <button onclick="
+  updateCalculation('3');
+  console.log(calculation);
+  ">
+    3
+  </button>
+  <button onclick="
+  updateCalculation('+');
+  console.log(calculation);
+  ">
+    +
+  </button>
+<p>
+ 
+  <p>
+    <button onclick="
+    updateCalculation('4');
+    console.log(calculation);
+    ">
+      4
+    </button>
+    <button onclick="
+    updateCalculation('5');
+    console.log(calculation);
+    ">
+      5
+    </button>
+    <button onclick="
+    updateCalculation('6');
+    console.log(calculation);
+    ">
+      6
+    </button>
+    <button onclick="
+    updateCalculation('-');
+    console.log(calculation);
+    ">
+      -
+    </button>
+  <p>
+    <p>
+      <button onclick="
+      updateCalculation('7');
+      console.log(calculation);
+      ">
+        7
+      </button>
+      <button onclick="
+      updateCalculation('8');
+      console.log(calculation);
+      ">
+        8
+      </button>
+      <button onclick="
+      updateCalculation('9');
+      console.log(calculation);
+      ">
+        9
+      </button>
+      <button onclick="
+      updateCalculation('*');
+      console.log(calculation);
+      ">
+        *
+      </button>
+    <p>
+      <p>
+        <button onclick="
+        updateCalculation('0');
+        console.log(calculation);
+        ">
+          0
+        </button>
+        <button onclick="
+        updateCalculation('.');
+        console.log(calculation);
+        ">
+          .
+        </button>
+        <button onclick="
+        evaluation();
+        console.log(calculation);
+        ">
+          =
+        </button>
+        <button onclick="
+        updateCalculation('/');
+        console.log(calculation);
+        ">
+          /
+        </button>
+      <p>
+        <button onclick="
+        clearCalculation();
+        console.log(calculation);
+        ">
+          Clear
+        </button>
+        <button onclick="backspace()">(<-)</button>
+
+<script>
+
+let calculation = JSON.parse(localStorage.getItem('calculated')) || '';
+
+
+function updateCalculation(value) {
+calculation+=value;
+console.log(calculation);
+localStorage.setItem('calculated',JSON.stringify(calculation));
+updateDisplay();
+}
+
+function clearCalculation() {
+calculation='';
+console.log("cleared:"+calculation);
+localStorage.setItem('calculated',JSON.stringify(calculation));
+updateDisplay();
+}
+
+function backspace(){
+calculation=calculation.slice(0, -1);
+localStorage.setItem('calculated',JSON.stringify(calculation));
+updateDisplay();
+}
+
+function evaluation(){
+try {
+  calculation=eval(calculation).toString();
+  console.log("Result:"+calculation);
+} catch(error){
+  console.log("error");
+}
+localStorage.setItem('calculated',JSON.stringify(calculation));
+updateDisplay();
+}
+
+function updateDisplay(){
+  document.getElementById('display').innerText = calculation;
+}
+
+updateDisplay();
+
+</script>
+    </body>
+  </head>
+</html>

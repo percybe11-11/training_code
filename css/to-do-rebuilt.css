@@ -1,0 +1,20 @@
+.parent{
+  display: grid;
+  width:600px;
+  grid-template-columns: 200px 200px 200px;
+  justify-content: center;
+
+}
+
+p{
+  margin:0px;
+}
+.parent1{
+  display: grid;
+  width:600px;
+  grid-template-columns: 200px 200px 200px;
+  justify-content: center;
+}
+.spacer{
+  margin-top: 60px;
+}
